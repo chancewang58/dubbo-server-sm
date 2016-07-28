@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://code.alibabatech.com/schema/dubbo 
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+       
+     <!-- <bean id="providerService" class="com.tianmg.testad.dubbo.provider.impl.ProviderServiceImpl"></bean> -->  
+      
+     <dubbo:application name="provider-demo"/>
+     
+     <dubbo:registry address="zookeeper://192.168.2.162:2181"/>
+     <!-- 去除注册中心,采用直连方式 -->
+     <!-- <dubbo:registry address="${provider_registry}"/> -->
+     <!-- <dubbo:registry address="N/A"/> -->
+		
+     <dubbo:protocol name="dubbo" port="20880" />
+     
+    
+     <!--声明暴漏的服务接口-->
+    <dubbo:service interface="com.tianmg.dubbot.service.UserService" ref="userServiceImpl" timeout="6000"/>
+    
+    
+</beans>
